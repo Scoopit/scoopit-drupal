@@ -1,0 +1,125 @@
+<?php
+/**
+ * @file
+ * A block module that displays last posts from a scoop.it topic.
+ */
+
+/**
+ * Implements hook_help().
+ * Displays help and module information.
+ *
+ * @param path 
+ *   Which path of the site we're using to display help
+ * @param arg 
+ *   Array that holds the current path as returned from arg() function
+ */
+function scoopit_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#scoopit":
+      return '<p>' . t("A module that displays scoop.it topic as a node.") . '</p>';
+      break;
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ * Info about the module
+ */
+function scoopit_block_info() {
+  $blocks['scoopit'] = array(
+    // The name that will appear in the block list.
+    'info' => t('Last Scoop.it posts'),
+    // Default setting.
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_menu().
+ * add the configuration for Scoop.it
+ */
+function scoopit_menu() {
+   $items = array();
+
+   $items['admin/config/content/scoopit'] = array(
+    'title' => 'Scoop.it configuration',
+    'description' => 'Configuration Scoop.it Module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_scoopit_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+ 
+   return $items;
+}
+/******************* FRONT END PART ***********************/
+
+/**
+ * Implements hook_node_info().
+ * Declare a new node scoopit
+ */
+function scoopit_node_info() {
+  // We define the node type as an associative array.
+  return array(
+    'scoopit' => array(
+      'name' => t('Scoop.it Topic'),
+      'base' => 'scoopit',
+      'description' => t('Scoop.it page description'),
+      'title_label' => t('Scoop.it page title'),
+    ),
+  );
+}
+
+function scoopit_theme($existing, $type, $theme, $path) {
+    $items = array(
+        'node__scoopit' => array(
+            // Don't specify the path in the template name.
+            // Unless you have your template inside a directory within this module.
+            'template' =>  'node--scoopit',
+            'variables' => array('node' => (object)array()),
+            // If you want to put the tpl in another location, you can use this key.
+            'theme path' => drupal_get_path('module', 'scoopit'),
+        ),
+    );
+    return $items;
+}
+
+
+/********************* ADMIN PART *************************/
+
+/**
+ * Page callback: Current posts settings
+ *
+ * @see current_posts_menu()
+ */
+
+function _scoopit_form($form, &$form_state) {
+  $form['scoopit_key'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Scoop.it access key'),
+    '#default_value' => variable_get('scoopit_key', "scoopit key"),
+    '#description' => t('Key to access to scoop.it'),
+    '#required' => TRUE,
+  );
+  
+  $form['scoopit_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Scoop.it secret'),
+    '#default_value' => variable_get('scoopit_secret', "scoopit secret"),
+    '#description' => t('Secret to access to scoop.it'),
+    '#required' => TRUE,
+  );
+  
+  $form['scoopit_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Scoop.it secret'),
+    '#default_value' => variable_get('scoopit_secret', "scoopit secret"),
+    '#description' => t('Secret to access to scoop.it'),
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+?>
