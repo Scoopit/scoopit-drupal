@@ -1,0 +1,5 @@
+name = Scoop.it
+description = Module to dispay topic as node.
+core = 7.x
+
+configure = admin/config/content/scoopit
