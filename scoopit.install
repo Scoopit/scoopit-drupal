@@ -1,0 +1,86 @@
+<?php
+drupal_set_message(print_r("Test", TRUE));
+/**
+ * Implements hook_install().
+ */
+function scoopit_install() {
+	print_r('Installing Scoop.it');
+    node_types_rebuild();
+    $types = node_type_get_types();
+    node_add_body_field($types['scoopit']); 
+    _add_custom_fields();
+    drupal_set_message(print_r("Installed Called", TRUE));
+}
+
+function _add_custom_fields() {
+    foreach (_scoopit_installed_fields() as $field) {
+        field_create_field($field);
+    }
+    foreach (_scoopit_installed_instances() as $fieldinstance) {
+        $fieldinstance['entity_type'] = 'node';
+        $fieldinstance['bundle'] = 'scoopit';
+        drupal_set_message(print_r($fieldinstance, TRUE));
+        field_create_instance($fieldinstance);
+    }
+}
+
+
+function _scoopit_installed_fields() {
+    $t = get_t();
+    return array(
+        'scoopit_topic' => array(
+            'field_name' => 'scoopit_topic',
+            'label' => $t('Topic to display'),
+            'type' => 'text'
+        )
+    );
+}
+
+function _scoopit_installed_instances() {
+    $t = get_t();
+    return array(
+        'scoopit_topic' => array(
+            'field_name' => 'scoopit_topic',
+            'type' => 'text',
+            'label' => $t('Topic to display'),
+            'widget' => array(
+                'type' => 'text_textfield'
+            ),
+            'display' => array(
+                'example_node_list' => array(
+                    'label' => $t('Topic to display'),
+                    'type' => 'text'
+                )
+            )
+        )
+    );
+}
+
+
+/**
+ * Implements hook_uninstall().
+ */
+function scoopit_uninstall() {
+    $ournewtype = 'scoopit';
+    $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+    $result = db_query($sql, array(':type' => $ournewtype));
+    $nodeids = array();
+    foreach ($result as $row) {
+        $nodeids[] = $row->nid;
+    }
+    node_delete_multiple($nodeids);
+    node_type_delete($ournewtype);
+    _delete_custom_fields();
+    node_type_delete($ournewtype);
+    field_purge_batch(500);
+}
+
+function _delete_custom_fields() {
+    foreach (array_keys(_scoopit_installed_fields()) as $field) {
+        field_delete_field($field);
+    }
+    $instances = field_info_instances('node', 'scoopit');
+    foreach ($instances as $instance_name => $fieldinstance) {
+        field_delete_instance($fieldinstance);
+    }
+}
