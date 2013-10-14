@@ -7,7 +7,6 @@ function scoopit_install() {
 	print_r('Installing Scoop.it');
     node_types_rebuild();
     $types = node_type_get_types();
-    node_add_body_field($types['scoopit']); 
     _add_custom_fields();
     drupal_set_message(print_r("Installed Called", TRUE));
 }
