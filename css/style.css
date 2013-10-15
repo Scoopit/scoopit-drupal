@@ -82,6 +82,12 @@
 #scit_viewbox .onePost .postView .description p {
 	margin-bottom:0px;
 }
+/* STYLE FOR EMBEDD */
+#scit_viewbox .onePost .postView iframe, 
+#scit_viewbox .onePost .postView object, 
+#scit_viewbox .onePost .postView embed {
+	width: 100% !important;
+} 
 
 /* STYLE FOR IMAGE */
 #scit_viewbox .onePost .postView .image {
