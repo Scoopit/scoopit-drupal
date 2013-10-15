@@ -1,0 +1,154 @@
+@CHARSET "UTF-8";
+
+#scit_viewbox blockquote {
+    background-position: 0 -1px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 2px;
+    margin: 0px;
+}
+
+#scit_viewbox {
+	margin: auto;
+	position: relative;
+}
+
+#scit_viewbox .onePost {
+    padding-bottom: 10px;
+}
+
+#scit_viewbox .onePost .postView {
+    background-color: #FFFFFF;
+    clear: both;
+    color: black;
+    padding-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    position: relative;
+}
+
+/* The popup for a post*/
+#scit_viewbox  #thePostToPrint {
+    box-shadow: 0 0 10px #000000;
+    left: 240px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    position: absolute;
+    top: 115px;
+    width: 467px;
+    z-index: 3;
+}
+
+#scit_viewbox #thePostToPrint #closeThePostToPrint {
+    cursor: pointer;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+}
+#scit_viewbox #thePostToPrint .onePost {
+	padding-bottom:0px;
+}
+
+/* STYLE FOR METAS */
+#scit_viewbox .onePost .postView .metas {
+	color: #777777;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+}
+#scit_viewbox .onePost .postView .metas .sourceicon {
+    float: left;
+    margin-right: 5px;
+}
+
+#scit_viewbox .onePost .postView div.title {
+    word-wrap: break-word;
+}
+#scit_viewbox .onePost .postView div.title h2 {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+#scit_viewbox .onePost .postView .description {
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: left;
+    word-wrap: break-word;
+}
+#scit_viewbox .onePost .postView .description p {
+	margin-bottom:0px;
+}
+
+/* STYLE FOR IMAGE */
+#scit_viewbox .onePost .postView .image {
+	text-align:center;
+}
+#scit_viewbox .onePost .postView .image img {
+    height: auto;
+    max-height: auto;
+    max-width: 100%;
+    width: auto;
+}
+/* position */
+#scit_viewbox .onePost .postView.right .image {
+    float: right;
+    padding-left: 10px;
+}
+#scit_viewbox .onePost .postView.left .image {
+    float: left;
+    padding-right : 10px;
+}
+#scit_viewbox .onePost .postView.center .image {
+    clear: both;
+    display: block;
+    float: none;
+    margin-right: 0;
+    text-align: center;
+}
+/* size */
+#scit_viewbox .onePost .postView.small .image img {
+    max-height: none;
+    width: 112px;
+}
+#scit_viewbox .onePost .postView.medium .image img {
+    max-height: none;
+    width: 224px;
+}
+
+/* VIEW FOR BOTTOM */
+#scit_viewbox .onePost .source {
+	background-color: white;
+	padding-top: 10px;	
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+
+#scit_viewbox .paginator .page span, #scit_viewbox .paginator .page a{
+	width: 20px;
+	height: 20px;
+	display:block;
+	background-color: #DAE4EE;
+	margin: 2px;
+	text-align: center;
+}
+
+#scit_viewbox .paginator .previous img {
+	padding-right: 10px;
+}
+
+#scit_viewbox .paginator .next img {
+	padding-left: 10px;
+}
+
+
+#scit_viewbox .scoopitPowered {
+	background-color: #DAE4EE;
+	margin: auto;
+	width: 970px;
+	margin-top:20px;
+	
+}
