@@ -5,16 +5,17 @@ include(drupal_get_path('module', 'scoopit')."/include/include_commons.php");
 
 $auth_key = variable_get('scoopit_key', "fail");
 $auth_secret = variable_get('scoopit_secret', "fail");
-$topic_id = $content["scoopit_topic"][0]["#markup"];
-
-
-$scoop = new ScoopIt(new SessionTokenStore(), ".", $auth_key, $auth_secret);
-// nb post to display per page
-$nbPostsPerPage = 25;
-$page = isset($_REQUEST["page"]) ? (int)$_REQUEST["page"] : 1;
-$curated=$nbPostsPerPage;
-$curable=0;
-$topic = $scoop->topic($topic_id, $curated, $curable, $page - 1);
+if (array_key_exists("scoopit_topic", $content)) {
+	$topic_id = $content["scoopit_topic"][0]["#markup"];
+	
+	
+	$scoop = new ScoopIt(new SessionTokenStore(), ".", $auth_key, $auth_secret);
+	// nb post to display per page
+	$nbPostsPerPage = 25;
+	$page = isset($_REQUEST["page"]) ? (int)$_REQUEST["page"] : 1;
+	$curated=$nbPostsPerPage;
+	$curable=0;
+	$topic = $scoop->topic($topic_id, $curated, $curable, $page - 1);
 
 
 ?>
@@ -72,3 +73,5 @@ $topic = $scoop->topic($topic_id, $curated, $curable, $page - 1);
 		include_once drupal_get_path('module', 'scoopit').'/include/include_paginator.php';
 	?>
 </div>
+
+<?php } ?>
