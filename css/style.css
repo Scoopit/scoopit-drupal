@@ -127,6 +127,15 @@
 	padding-bottom: 5px;
 }
 
+#scit_viewbox .paginator .page span, #scit_viewbox table.paginator {
+	width: auto;
+}
+
+#scit_viewbox .paginator .page span, #scit_viewbox table.paginator tr td {
+	background-color: white;
+	padding: 1px;
+}
+
 #scit_viewbox .paginator .page span, #scit_viewbox .paginator .page a{
 	width: 20px;
 	height: 20px;
