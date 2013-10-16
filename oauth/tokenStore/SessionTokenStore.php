@@ -1,6 +1,6 @@
 <?php
 
-include("TokenStore.php");
+include_once("TokenStore.php");
 
 // Store authentication tokens in the session
 class SessionTokenStore implements TokenStore{

@@ -1,9 +1,9 @@
 <?php
 
-include("oauth/OAuth.php");
-include("oauth/tokenStore/SessionTokenStore.php");
-include("oauth/backend/ScoopCurlHttpBackend.php");
-include("oauth/executor/ScoopExecutor.php");
+include_once("oauth/OAuth.php");
+include_once("oauth/tokenStore/SessionTokenStore.php");
+include_once("oauth/backend/ScoopCurlHttpBackend.php");
+include_once("oauth/executor/ScoopExecutor.php");
 
 // You may want to catch this to present a decent =  error message for you're
 // user ;)

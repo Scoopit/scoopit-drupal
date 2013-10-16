@@ -1,7 +1,7 @@
 <?php 
 
-include(drupal_get_path('module', 'scoopit')."/ScoopIt.php");
-include(drupal_get_path('module', 'scoopit')."/include/include_commons.php");
+include_once(drupal_get_path('module', 'scoopit')."/ScoopIt.php");
+include_once(drupal_get_path('module', 'scoopit')."/include/include_commons.php");
 
 $auth_key = variable_get('scoopit_key', "fail");
 $auth_secret = variable_get('scoopit_secret', "fail");

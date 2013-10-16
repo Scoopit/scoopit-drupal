@@ -1,6 +1,6 @@
 <?php 
 
-include("ScoopHttpBackend.php");
+include_once("ScoopHttpBackend.php");
 
 // Default curl implementation this is some crap.
 class ScoopCurlHttpBackend implements ScoopHttpBackend {
