@@ -167,3 +167,11 @@
 	margin-top:20px;
 	
 }
+
+#scit_viewbox .poweredby {
+	background-image: url('poweredbyscoopit.png');
+	width: 82px;
+	height: 65px;
+	margin: auto;
+	float:right;
+}

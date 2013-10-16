@@ -74,6 +74,8 @@ if (array_key_exists("scoopit_topic_url", $content)) {
              </td>
         </tr>
     </table>
+    <a class="poweredby" href="http://www.scoop.it" alt="scoop.it"></a>
+    <div style="clear:both"></div>
     <?php 
 	    $totalPostCount = $topic->curatedPostCount;
 	    $pageCount = ceil($totalPostCount/$nbPostsPerPage);
