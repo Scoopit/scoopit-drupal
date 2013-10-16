@@ -5,11 +5,15 @@ include_once(drupal_get_path('module', 'scoopit')."/include/include_commons.php"
 
 $auth_key = variable_get('scoopit_key', "fail");
 $auth_secret = variable_get('scoopit_secret', "fail");
-if (array_key_exists("scoopit_topic", $content)) {
-	$topic_id = $content["scoopit_topic"][0]["#markup"];
-	
-	
+if (array_key_exists("scoopit_topic_url", $content)) {
+	$scoopit_topic_url = $content["scoopit_topic_url"][0]["#markup"];
 	$scoop = new ScoopIt(new SessionTokenStore(), ".", $auth_key, $auth_secret);
+
+	$needle = "scoop.it/t/";
+	$result = substr($scoopit_topic_url, strpos($scoopit_topic_url, $needle) + 11,strlen($scoopit_topic_url));
+	$topicFound =  $scoop->resolveTopicFromItsShortName($result);
+	$topic_id = $topicFound->id;
+	
 	// nb post to display per page
 	$nbPostsPerPage = 25;
 	$page = isset($_REQUEST["page"]) ? (int)$_REQUEST["page"] : 1;

@@ -27,8 +27,8 @@ function _add_custom_fields() {
 function _scoopit_installed_fields() {
     $t = get_t();
     return array(
-        'scoopit_topic' => array(
-            'field_name' => 'scoopit_topic',
+        'scoopit_topic_url' => array(
+            'field_name' => 'scoopit_topic_url',
             'label' => $t('Topic to display'),
             'type' => 'text'
         )
@@ -38,10 +38,10 @@ function _scoopit_installed_fields() {
 function _scoopit_installed_instances() {
     $t = get_t();
     return array(
-        'scoopit_topic' => array(
-            'field_name' => 'scoopit_topic',
+        'scoopit_topic_url' => array(
+            'field_name' => 'scoopit_topic_url',
             'type' => 'text',
-            'label' => $t('Topic to display'),
+            'label' => $t('Topic to display - paste the scoopit url'),
             'widget' => array(
                 'type' => 'text_textfield'
             ),
