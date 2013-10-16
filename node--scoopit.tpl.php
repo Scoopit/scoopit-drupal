@@ -8,11 +8,16 @@ $auth_secret = variable_get('scoopit_secret', "fail");
 if (array_key_exists("scoopit_topic_url", $content)) {
 	$scoopit_topic_url = $content["scoopit_topic_url"][0]["#markup"];
 	$scoop = new ScoopIt(new SessionTokenStore(), ".", $auth_key, $auth_secret);
-
-	$needle = "scoop.it/t/";
-	$result = substr($scoopit_topic_url, strpos($scoopit_topic_url, $needle) + 11,strlen($scoopit_topic_url));
-	$topicFound =  $scoop->resolveTopicFromItsShortName($result);
-	$topic_id = $topicFound->id;
+	
+	if ($cache = cache_get($scoopit_topic_url)) {
+		$topic_id = $cache->data;
+	} else {
+		$needle = "scoop.it/t/";
+		$result = substr($scoopit_topic_url, strpos($scoopit_topic_url, $needle) + 11,strlen($scoopit_topic_url));
+		$topicFound =  $scoop->resolveTopicFromItsShortName($result);
+		$topic_id = $topicFound->id;
+		cache_set($scoopit_topic_url, $topicFound->id, 'cache');
+	}
 	
 	// nb post to display per page
 	$nbPostsPerPage = 25;
