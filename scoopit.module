@@ -108,17 +108,17 @@ function scoopit_theme($existing, $type, $theme, $path) {
 function _scoopit_form($form, &$form_state) {
   $form['scoopit_key'] = array(
     '#type' => 'textfield',
-    '#title' => t('Scoop.it access key'),
+    '#title' => t('Scoop.it Consumer Key'),
     '#default_value' => variable_get('scoopit_key', "scoopit key"),
-    '#description' => t('Key to access to scoop.it'),
+    '#description' => t('OAuth Consumer Key to access the Scoop.it API'),
     '#required' => TRUE,
   );
   
   $form['scoopit_secret'] = array(
     '#type' => 'textfield',
-    '#title' => t('Scoop.it secret'),
+    '#title' => t('Scoop.it Consumer Secret'),
     '#default_value' => variable_get('scoopit_secret', "scoopit secret"),
-    '#description' => t('Secret to access to scoop.it'),
+    '#description' => t('OAuth Consumer Secret to access the Scoop.it API'),
     '#required' => TRUE,
   );
 
